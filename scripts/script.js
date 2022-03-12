@@ -37,6 +37,8 @@ function playSingleRound(playerSelection, computerSelection){
 // that keeps score and reports a winner or loser at the end.
 
 function game(){
+    let playerScore = 0;
+    let computerScore = 0;
     for (let i = 0; i < 5; i++){
         playerSelection = prompt("Please enter your selection")
         playerSelection = playerSelection.toLowerCase();
@@ -47,12 +49,21 @@ function game(){
         } else {
            let singleRound = playSingleRound(playerSelection)
            if (singleRound === 'loser'){
-               console.log('loser');
+               computerScore++;
+               console.log('You lost! The score is '+playerScore+ ' - '+computerScore);
            } else if (singleRound === 'draw'){
-               console.log('draw');
+               console.log('Draw!');
            } else {
-               console.log('win');
+               playerScore++;
+               console.log('You won! The score is '+playerScore+ ' - '+computerScore);
            }
         }
     }   
+    if (playerScore>computerScore){
+        alert("Congratulations! You won the best of 5!")
+    } else if (playerScore<computerScore){
+        alert("You lost the best of 5! Better luck next time.")
+    } else {
+        alert("It's a draw!")
+    }
 }
