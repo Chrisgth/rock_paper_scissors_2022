@@ -21,16 +21,14 @@ function computerPlay(){
 
 function playSingleRound(playerSelection, computerSelection){
     computerSelection = computerPlay();
-    playerSelection = playerSelection.toLowerCase();
-    playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
     if (playerSelection === 'Rock' && computerSelection === 'Paper'||
     playerSelection === 'Paper' && computerSelection === 'Scissors'||
     playerSelection === 'Scissors' && computerSelection === 'Rock'){
-        return("You lose! " + computerSelection + " beats " + playerSelection + ".");
+        return 'loser';
     } else if (playerSelection===computerSelection){
-        return("Draw!");
+        return 'draw';
     } else{
-        return("You win! Congratulations!");
+        return 'win';
     }
 }
 
@@ -41,6 +39,20 @@ function playSingleRound(playerSelection, computerSelection){
 function game(){
     for (let i = 0; i < 5; i++){
         playerSelection = prompt("Please enter your selection")
-        console.log(playSingleRound(playerSelection));
-    }
+        playerSelection = playerSelection.toLowerCase();
+        playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
+        if (!(playerSelection === 'Rock') && !( playerSelection === 'Paper') && !(playerSelection === 'Scissors')){
+            alert("Please enter either rock paper or scissors!")
+            i--;
+        } else {
+           let singleRound = playSingleRound(playerSelection)
+           if (singleRound === 'loser'){
+               console.log('loser');
+           } else if (singleRound === 'draw'){
+               console.log('draw');
+           } else {
+               console.log('win');
+           }
+        }
+    }   
 }
