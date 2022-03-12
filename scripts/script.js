@@ -50,12 +50,12 @@ function game(){
            let singleRound = playSingleRound(playerSelection)
            if (singleRound === 'loser'){
                computerScore++;
-               console.log('You lost! The score is '+playerScore+ ' - '+computerScore);
+               alert('You lost! The score is '+playerScore+ ' - '+computerScore);
            } else if (singleRound === 'draw'){
-               console.log('Draw!');
+               alert('Draw!');
            } else {
                playerScore++;
-               console.log('You won! The score is '+playerScore+ ' - '+computerScore);
+               alert('You won! The score is '+playerScore+ ' - '+computerScore);
            }
         }
     }   
