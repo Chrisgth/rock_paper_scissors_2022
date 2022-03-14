@@ -19,16 +19,44 @@ function computerPlay(){
 // Make your function’s playerSelection parameter case-insensitive 
 // (so users can input rock, ROCK, RocK or any other variation).
 
+let playerScore = 0;
+let computerScore = 0;
+function gameWonText(){
+    score.textContent = 'The score is: ' + playerScore + ' - ' + computerScore + '. Congratulations! You won the game!';
+    playerScore = 0;
+    computerScore = 0
+}
+function gameLostText(){
+    score.textContent = 'The score is: ' + playerScore + ' - ' + computerScore + '. You lost the game. Better luck next time!';
+    playerScore = 0;
+    computerScore = 0;
+}
 function playSingleRound(playerSelection, computerSelection){
+
+    const result = document.querySelector('#results')
     computerSelection = computerPlay();
     if (playerSelection === 'Rock' && computerSelection === 'Paper'||
     playerSelection === 'Paper' && computerSelection === 'Scissors'||
     playerSelection === 'Scissors' && computerSelection === 'Rock'){
-        return 'loser';
+        result.textContent = 'You lost the round!'
+        if(computerScore < 4){
+            computerScore += 1;
+            score.textContent = 'The score is: ' + playerScore + ' - ' + computerScore;
+        } else {
+            computerScore += 1;
+            gameLostText();
+        }
     } else if (playerSelection===computerSelection){
-        return 'draw';
+        result.textContent = 'Round draw!'
     } else{
-        return 'win';
+        result.textContent = 'You won the round!'
+        if(playerScore < 4){
+            playerScore += 1;
+            score.textContent = 'The score is: ' + playerScore + ' - ' + computerScore;
+        } else {
+            playerScore += 1
+            gameWonText();
+        }
     }
 }
 
@@ -36,34 +64,19 @@ function playSingleRound(playerSelection, computerSelection){
 // Call the playRound function inside of this one to play a 5 round game
 // that keeps score and reports a winner or loser at the end.
 
-function game(){
-    let playerScore = 0;
-    let computerScore = 0;
-    for (let i = 0; i < 5; i++){
-        playerSelection = prompt("Please enter your selection")
-        playerSelection = playerSelection.toLowerCase();
-        playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
-        if (!(playerSelection === 'Rock') && !( playerSelection === 'Paper') && !(playerSelection === 'Scissors')){
-            alert("Please enter either rock paper or scissors!")
-            i--;
-        } else {
-           let singleRound = playSingleRound(playerSelection)
-           if (singleRound === 'loser'){
-               computerScore++;
-               alert('You lost! The score is '+playerScore+ ' - '+computerScore);
-           } else if (singleRound === 'draw'){
-               alert('Draw!');
-           } else {
-               playerScore++;
-               alert('You won! The score is '+playerScore+ ' - '+computerScore);
-           }
-        }
-    }   
-    if (playerScore>computerScore){
-        alert("Congratulations! You won the best of 5!")
-    } else if (playerScore<computerScore){
-        alert("You lost the best of 5! Better luck next time.")
-    } else {
-        alert("It's a draw!")
-    }
-}
+// Create three buttons, one for each selection. Add an event listener to the buttons that call 
+// your playRound function with the correct playerSelection every time a button is clicked. (you can keep the console.logs for this step)
+
+const rockbtn = document.querySelector('#rock');
+const paperbtn = document.querySelector('#paper');
+const scissorsbtn = document.querySelector('#scissors');
+
+rockbtn.addEventListener('click', () => {playSingleRound('Rock');});
+paperbtn.addEventListener('click', () => {playSingleRound('Paper');});
+scissorsbtn.addEventListener('click', () => {playSingleRound('Scissors');});
+
+// Add a div for displaying results and change all of your console.logs into DOM methods.
+// Display the running score, and announce a winner of the game once one player reaches 5 points.
+const score = document.querySelector('#score');
+
+

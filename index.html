@@ -5,9 +5,20 @@
         <title>
             Rock Paper Scissors 2022
         </title>
-        <script src="scripts/script.js"></script>
+        <link rel="stylesheet" href="styles/style.css">
+        <script src="scripts/script.js" defer></script>
     </head>
-    <body style="display: flex; align-items: center; justify-content: center; height: 100vh; background-color: #981717">
-        <button onclick="game()" style="padding: 100px; font-size: 48px; border-radius:12px;">Play Rock, Paper, Scissors!</button>
+    <body>
+        <!-- <button onclick="game()" style="padding: 100px; font-size: 48px; border-radius:12px;">Play Rock, Paper, Scissors!</button> -->
+        <h1>Rock, Paper, Scissors!</h1>
+        <div id="btns">
+        <button id="rock">&#9994</button>
+        <button id="paper">&#9995</button>
+        <button id="scissors">&#9996</button>
+        </div>
+        <div id="paras">
+            <p id="results"></p>
+            <p id="score">The score is: 0-0.</p>
+        </div>
     </body>
 </html>

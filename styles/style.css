@@ -1,0 +1,32 @@
+body {
+    display: flex;
+    flex-direction: column;
+    background-color:#364EC9;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+}
+
+#btns{
+    display: flex;
+    gap: 50px; 
+}
+
+button {
+    padding: 40px;
+    border-radius: 12px;
+    font-size: 40px;
+}
+
+#paras{
+    height: 200px;
+    box-sizing: border-box;
+    font-size: 24px;
+    text-align: center;
+}
+
+#results, 
+#score{
+    height: 24px;
+}
+
